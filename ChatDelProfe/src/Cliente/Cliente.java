@@ -7,7 +7,7 @@
  * and open the template in the editor.
  */
 
-package Cliente;
+/*package Cliente;
 
 import java.io.*;
 import java.net.*;
@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
  *
  * @author Administrador
  */
+/*
 public class Cliente
 {
    public static String IP_SERVER;
@@ -32,9 +33,10 @@ public class Cliente
    
    String nomCliente;
    /** Creates a new instance of Cliente */
-   public Cliente(VentCliente vent) throws IOException
+/*
+   public Cliente(vistaCliente.VentCliente ventCliente) throws IOException
    {      
-      this.vent=vent;
+      this.vent=ventCliente;
    }
    
    public void conexion() throws IOException 
@@ -67,7 +69,7 @@ public class Cliente
          for(int i=0;i<numUsers;i++)
             users.add(entrada.readUTF());
       } catch (IOException ex) {
-         Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
       }
       return users;
    }
@@ -98,3 +100,4 @@ public class Cliente
    
   
 }
+*/

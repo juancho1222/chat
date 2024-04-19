@@ -3,8 +3,8 @@ import java.net.*;
 import java.lang.*;
 import java.io.*;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
 
 class threadCliente extends Thread{
    DataInputStream entrada;
@@ -42,7 +42,7 @@ class threadCliente extends Thread{
             }
          }
          catch (IOException e){
-            System.out.println("Error en la comunicación "+"Información para el usuario");
+            System.out.println("Error en la comunicaciï¿½n "+"Informaciï¿½n para el usuario");
             break;
          }
       }
