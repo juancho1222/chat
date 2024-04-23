@@ -12,7 +12,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 import controladorCliente.Cliente;
-
+import controladorCliente.controlBotones;
 
 import javax.swing.JOptionPane.*;
 
@@ -20,54 +20,53 @@ import javax.swing.JOptionPane.*;
  * 
  * @author Administrador
  */
-public class VentCliente extends JFrame implements ActionListener {
+public class VentCliente extends JFrame  {
      String mensajeCliente;
      JTextArea panMostrar;
-     JTextField txtMensage;
-     JButton butEnviar;
+     public JTextField txtMensage;
+     public JButton butEnviar;
      JLabel lblNomUser;
-     JList lstActivos;
-     JButton butPrivado;
+     public JList lstActivos;
+     public JButton butPrivado;
      Cliente cliente;	
      
       
       JMenuBar barraMenu;
       JMenu JMAyuda;
-      JMenuItem help;
+      public JMenuItem help;
       JMenu JMAcerca;
-      JMenuItem acercaD;
-      VentanaAyuda va;
+      public JMenuItem acercaD;
+ 
       VentPrivada vp;
       
       JOptionPane AcercaDe;
      
-     Vector<String> nomUsers;
-     VentPrivada ventPrivada;
+     public Vector<String> nomUsers;
+    
      /** Creates a new instance of Cliente */
-     public VentCliente() throws IOException {
+     public VentCliente(Cliente cliente, VentPrivada ventPrivada) throws IOException {
              super("Cliente Chat");
+             this.cliente=cliente;
+             this.vp=ventPrivada;
              txtMensage = new JTextField(30);
              butEnviar = new JButton("Enviar");
              lblNomUser = new JLabel("Usuario <<  >>");
              lblNomUser.setHorizontalAlignment(JLabel.CENTER);
              panMostrar = new JTextArea();             
              panMostrar.setColumns(25);
-             txtMensage.addActionListener(this);
-             butEnviar.addActionListener(this);
+            
              lstActivos=new JList();             
              butPrivado=new JButton("Privado");
-             butPrivado.addActionListener(this);
+             
              
              barraMenu=new JMenuBar();
              JMAyuda=new JMenu("Ayuda");
              help=new JMenuItem("Ayuda");
-             help.setActionCommand("help");
-             help.addActionListener(this);
+             
              
              JMAcerca=new JMenu("Acerca de");
              acercaD=new JMenuItem("Creditos");
-             acercaD.setActionCommand("Acerca");
-             acercaD.addActionListener(this);
+             
              
              JMAyuda.add(help);
              JMAcerca.add(acercaD);
@@ -106,18 +105,22 @@ public class VentCliente extends JFrame implements ActionListener {
              add(barraMenu,BorderLayout.NORTH);
              
              txtMensage.requestFocus();//pedir el focus	
-             
-             cliente=new Cliente(this);
-             cliente.conexion();     
+            
+     }
+      public void crear2() throws IOException {   
+    	  cliente.conexion();
              nomUsers=new Vector();
+
              ponerActivos(cliente.pedirUsuarios());
              
-             ventPrivada=new VentPrivada(cliente);
+            
                   
              setSize(450, 430);
              setLocation(120, 90);
              setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);				
              setVisible(true);
+            
+             
      }
      
      public void setNombreUser(String user)
@@ -152,35 +155,7 @@ public class VentCliente extends JFrame implements ActionListener {
             public Object getElementAt(int i) { return datos.get(i); }
         });
     }
-    @Override
-     public void actionPerformed(ActionEvent evt) {
-         
-       String comand=(String)evt.getActionCommand();
-        if(comand.compareTo("help")==0)
-        {
-        	va=new VentanaAyuda();
-        	va.setVisible(true);
-        }
-    if(comand.compareTo("Acerca")==0)
-       {   
-           JOptionPane.showMessageDialog(this,"Jos� Valdez/Javier Vargas","Desarrollado por",JOptionPane.INFORMATION_MESSAGE);           
-       }
-        if(evt.getSource()==this.butEnviar || evt.getSource()==this.txtMensage)
-        {
-           String mensaje = txtMensage.getText();        
-           cliente.flujo(mensaje);
-           txtMensage.setText("");
-        }
-        else if(evt.getSource()==this.butPrivado)
-        {
-           int pos=this.lstActivos.getSelectedIndex();
-           if(pos>=0)              
-           {
-        	   vp.setAmigo(nomUsers.get(pos));           
-        	   vp.setVisible(true);
-           }
-        }
-     }
+    
      
      public void mensageAmigo(String amigo,String msg)
      {
@@ -191,5 +166,9 @@ public class VentCliente extends JFrame implements ActionListener {
      public void enConsola(Object mensaje) {
  		System.out.println(mensaje);
  	}
+     public void creditos() {
+    	 JOptionPane.showMessageDialog(this,"Jos� Valdez/Javier Vargas","Desarrollado por",JOptionPane.INFORMATION_MESSAGE);
+     }
+    
  	
 }

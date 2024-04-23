@@ -43,8 +43,8 @@ class Servidor extends JFrame
       ServerSocket serv2=null;//para enviar mensajes
       boolean listening=true;
       try{
-         serv=new ServerSocket(5051);
-         serv2=new ServerSocket(5052);
+         serv=new ServerSocket(8081);
+         serv2=new ServerSocket(8082);
          mostrar(".::Servidor activo :");
          while(listening)
          {

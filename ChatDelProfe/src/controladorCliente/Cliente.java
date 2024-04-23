@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 import vistaCliente.VentCliente;
+import vistaCliente.VentPrivada;
 
 /**
  *
@@ -24,10 +25,18 @@ public class Cliente
    Socket comunication2 = null;//para recivir msg
    
    String nomCliente;
-   /** Creates a new instance of Cliente */
-   public Cliente(VentCliente vent) throws IOException
+   
+   public Cliente( ) throws IOException 
    {      
-      this.vent=vent;
+	  VentPrivada priv=new VentPrivada(this);
+	 
+       vent=new VentCliente(this,priv);
+      
+       vent.crear2();
+      controlBotones controlBotones=new controlBotones(vent,priv,this);
+      controladorPrivado contro =new controladorPrivado(priv, this);
+     
+     
    }
    
    public void conexion() throws IOException 
@@ -39,18 +48,19 @@ public class Cliente
          salida = new DataOutputStream(comunication.getOutputStream());
          entrada2 = new DataInputStream(comunication2.getInputStream());
          nomCliente = JOptionPane.showInputDialog("Introducir Nick :");
-         vent.setNombreUser(nomCliente);         
+        vent.setNombreUser(nomCliente);         
          salida.writeUTF(nomCliente);
       } catch (IOException e) {
          vent.enConsola("\tEl servidor no esta levantado");
          vent.enConsola("\t=============================");
-      }
-      new threadCliente(entrada2, vent).start();
+      }new threadCliente(entrada2, vent).start();
+      
    }
    public String getNombre()
    {
       return nomCliente;
    }
+
    public Vector<String> pedirUsuarios()
    {
       Vector<String> users = new Vector();
@@ -88,6 +98,7 @@ public class Cliente
     	  vent.enConsola("error...." + e);
       }
    }
+
    
   
 }

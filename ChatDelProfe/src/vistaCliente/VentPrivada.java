@@ -7,21 +7,24 @@ package vistaCliente;
 	import javax.swing.*;
 
 import controladorCliente.Cliente;
+import controladorCliente.controladorPrivado;
 	/**
 	 *
 	 * @author Administrador
 	 */
 	public class VentPrivada extends JFrame {
 	   JTextArea panMostrar;
-	   JTextField txtMensage;
-	   JButton butEnviar;
+	   public JTextField txtMensage;
+	   public JButton butEnviar;
 	   
 	   Cliente cliente;
-	   String amigo;
+	   public String amigo;
 	   
 	   public VentPrivada(Cliente cliente)
 	   {
+		   
 	      super("Amigo");
+	      
 	      this.cliente=cliente;
 	      txtMensage = new JTextField(30);
 	      butEnviar = new JButton("Enviar");
@@ -58,7 +61,8 @@ import controladorCliente.Cliente;
 	      });
 	      
 	      setSize(300,300);
-	      setLocation(570,90);      			      
+	      setLocation(570,90);
+	      
 	   }
 	   
 
@@ -69,6 +73,7 @@ import controladorCliente.Cliente;
 	    public void mostrarMensaje(String mensaje) {
 	        panMostrar.append(mensaje + "\n");
 	    }
+	   
 
 	    public void limpiarMensaje() {
 	    	txtMensage.setText("");
