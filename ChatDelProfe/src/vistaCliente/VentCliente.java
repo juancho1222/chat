@@ -169,6 +169,9 @@ public class VentCliente extends JFrame  {
      public void creditos() {
     	 JOptionPane.showMessageDialog(this,"Jos� Valdez/Javier Vargas","Desarrollado por",JOptionPane.INFORMATION_MESSAGE);
      }
+     public String pedirNick() {
+    	 return JOptionPane.showInputDialog("Introducir Nick :");
+     }
     
  	
 }

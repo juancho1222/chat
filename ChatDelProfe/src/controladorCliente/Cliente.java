@@ -47,7 +47,7 @@ public class Cliente
          entrada = new DataInputStream(comunication.getInputStream());
          salida = new DataOutputStream(comunication.getOutputStream());
          entrada2 = new DataInputStream(comunication2.getInputStream());
-         nomCliente = JOptionPane.showInputDialog("Introducir Nick :");
+         nomCliente = vent.pedirNick();
         vent.setNombreUser(nomCliente);         
          salida.writeUTF(nomCliente);
       } catch (IOException e) {
@@ -99,6 +99,4 @@ public class Cliente
       }
    }
 
-   
-  
 }
