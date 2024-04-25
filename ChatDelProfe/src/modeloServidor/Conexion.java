@@ -1,25 +1,20 @@
 package modeloServidor;
 
-import java.io.FileInputStream;
+
 import java.io.IOException;
 import java.net.ServerSocket;
-import java.util.Properties;
+
 
 public class Conexion {
 	private ServerSocket serv; //para comunicacion
     private ServerSocket serv2; //para enviar mensajes
+    private Propiedades prop;
     public Conexion() throws IOException {
-    	 Properties prop = new Properties();
-         FileInputStream input = new FileInputStream("src/DATA/IPs.properties");
-         prop.load(input);
-         
-         int envioPort = Integer.parseInt(prop.getProperty("envioIP"));
-         int reciboPort = Integer.parseInt(prop.getProperty("reciboIP"));
-         
-         serv = new ServerSocket(envioPort);
-         serv2 = new ServerSocket(reciboPort);
+    	prop= new Propiedades();    
+    	
+        serv = new ServerSocket(prop.getEnvioPort());
+        serv2 = new ServerSocket(prop.getReciboPort());
 
-         input.close();
     }
     //GETTERS Y SETTERS
 	public ServerSocket getServ() {
