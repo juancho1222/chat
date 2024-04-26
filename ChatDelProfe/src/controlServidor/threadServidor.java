@@ -6,8 +6,7 @@ import java.util.*;
 import javax.swing.*;
 
 /**
- *
- * @author Administrador
+ * Clase que representa un hilo de servidor para manejar la comunicación con un cliente.
  */
 public class threadServidor extends Thread
 {
@@ -19,7 +18,12 @@ public class threadServidor extends Thread
      public static Vector<threadServidor> clientesActivos=new Vector();	
      String nameUser;
      Gestor serv;
-     //Creacion del hilo usando inyeccion de dependencias y sockets del cliente aceptados por el servidor
+     /**
+      * Constructor de la clase ThreadServidor.
+      * @param scliente Socket de comunicación con el cliente.
+      * @param scliente2 Socket de comunicación con el cliente para enviar mensajes.
+      * @param serv Gestor del servidor.
+      */
      public threadServidor(Socket scliente,Socket scliente2,Gestor serv)
      {
         scli=scliente;
@@ -29,17 +33,25 @@ public class threadServidor extends Thread
         clientesActivos.add(this);        
         serv.vista.mostrar("cliente agregado: "+this);			
      }
-     
+     /**
+      * Obtiene el nombre del usuario asociado al hilo del servidor.
+      * @return Nombre del usuario.
+      */
      public String getNameUser()
      {
        return nameUser;
      }
-     
+     /**
+      * Establece el nombre del usuario asociado al hilo del servidor.
+      * @param name Nombre del usuario.
+      */
      public void setNameUser(String name)
      {
        nameUser=name;
      }
-     
+     /**
+      * Método que se ejecuta cuando se inicia el hilo.
+      */
      public void run()
      {
     	serv.vista.mostrar(".::Esperando Mensajes :");
@@ -94,7 +106,10 @@ public class threadServidor extends Thread
         catch(Exception et)
         {serv.vista.mostrar("no se puede cerrar el socket");}   
      }
-     
+     /**
+      * Método para enviar un mensaje a todos los clientes.
+      * @param mencli Mensaje a enviar.
+      */
      public void enviaMsg(String mencli2)
      {
         threadServidor user=null;
@@ -109,6 +124,9 @@ public class threadServidor extends Thread
             }catch (IOException e) {e.printStackTrace();}
         }
      }
+     /**
+      * Método para enviar la lista de usuarios activos a todos los clientes.
+      */
      public void enviaUserActivos()
      {
         threadServidor user=null;
@@ -123,7 +141,11 @@ public class threadServidor extends Thread
             }catch (IOException e) {e.printStackTrace();}
         }
      }
-
+     /**
+      * Método para enviar un mensaje a un usuario específico.
+      * @param amigo Nombre del usuario destinatario.
+      * @param mencli Mensaje a enviar.
+      */
    private void enviaMsg(String amigo, String mencli) 
    {
       threadServidor user=null;

@@ -17,7 +17,10 @@ import controladorCliente.controlBotones;
 import javax.swing.JOptionPane.*;
 
 /**
- * 
+ * Ventana del cliente del chat.
+ * Permite a los usuarios del chat enviar y recibir mensajes, ver usuarios activos y abrir ventanas de chat privado.
+ * También proporciona opciones de ayuda y créditos.
+ * La ventana se utiliza en conjunto con la clase Cliente para la comunicación con el servidor.
  * @author Administrador
  */
 public class VentCliente extends JFrame  {
@@ -29,7 +32,6 @@ public class VentCliente extends JFrame  {
      public JList lstActivos;
      public JButton butPrivado;
      Cliente cliente;	
-     
       
       JMenuBar barraMenu;
       JMenu JMAyuda;
@@ -43,7 +45,12 @@ public class VentCliente extends JFrame  {
      
      public Vector<String> nomUsers;
     
-     /** Creates a new instance of Cliente */
+     /** 
+      * Crea una nueva instancia de la ventana del cliente.
+      * @param cliente Cliente asociado a la ventana.
+      * @param ventPrivada Ventana privada para chats individuales.
+      * @throws IOException Si hay un error de entrada/salida.
+      */
      public VentCliente(Cliente cliente, VentPrivada ventPrivada) throws IOException {
              super("Cliente Chat");
              this.cliente=cliente;
@@ -107,7 +114,12 @@ public class VentCliente extends JFrame  {
              txtMensage.requestFocus();//pedir el focus	
             
      }
-      public void crear2() throws IOException {   
+     
+     /**
+      * Crea la interfaz de usuario.
+      * @throws IOException Si hay un error de entrada/salida.
+      */
+     public void crear2() throws IOException {   
     	 
              nomUsers=new Vector();
 
@@ -119,33 +131,61 @@ public class VentCliente extends JFrame  {
              setLocation(120, 90);
              setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);				
              setVisible(true);
-            
-             
      }
-     
+       
+     /**
+      * Establece el nombre del usuario en la interfaz.
+      * @param user Nombre de usuario a establecer.
+      */
      public void setNombreUser(String user)
      {
         lblNomUser.setText("Usuario " + user);
      }
+     
+     /**
+      * Muestra un mensaje en el área de visualización.
+      * @param msg Mensaje a mostrar.
+      */
      public void mostrarMsg(String msg)
      {
         this.panMostrar.append(msg+"\n");
      }
+     
+     /**
+      * Muestra usuarios activos en la lista.
+      * @param datos Vector de usuarios activos.
+      */
      public void ponerActivos(Vector datos)
      {
         nomUsers=datos;
         ponerDatosList(this.lstActivos,nomUsers);
      }
+     
+     /**
+      * Agrega un usuario a la lista de usuarios activos.
+      * @param user Usuario a agregar.
+      */
      public void agregarUser(String user)
      {
         nomUsers.add(user);
         ponerDatosList(this.lstActivos,nomUsers);
      }
+     
+     /**
+      * Retira un usuario de la lista de usuarios activos.
+      * @param user Usuario a retirar.
+      */
      public void retirraUser(String user)
      {        
         nomUsers.remove(user);
         ponerDatosList(this.lstActivos,nomUsers);
      }
+     
+     /**
+      * Rellena la lista con datos.
+      * @param list Lista a llenar.
+      * @param datos Datos para llenar la lista.
+      */
     private void ponerDatosList(JList list,final Vector datos)
     {
         list.setModel(new AbstractListModel() {            
@@ -156,22 +196,38 @@ public class VentCliente extends JFrame  {
         });
     }
     
-     
+     /**
+      * Muestra un mensaje de un amigo en una ventana privada.
+      * @param amigo Nombre del amigo.
+      * @param msg Mensaje recibido.
+      */
      public void mensageAmigo(String amigo,String msg)
      {
     	 vp.setAmigo(amigo);           
          vp.mostrarMensaje(msg);        
          vp.setVisible(true);
      }
+     
+     /**
+      * Imprime un mensaje en la consola.
+      * @param mensaje Mensaje a imprimir.
+      */
      public void enConsola(Object mensaje) {
  		System.out.println(mensaje);
  	}
+     
+     /**
+      * Muestra los créditos.
+      */
      public void creditos() {
     	 JOptionPane.showMessageDialog(this,"Jos� Valdez/Javier Vargas","Desarrollado por",JOptionPane.INFORMATION_MESSAGE);
      }
-     public String pedirNick() {
+     
+     /**
+      * Solicita al usuario que introduzca un apodo (nick).
+      * @return Apodo introducido por el usuario.
+     */
+  public String pedirNick() {
     	 return JOptionPane.showInputDialog("Introducir Nick :");
      }
-    
- 	
-}
+} 

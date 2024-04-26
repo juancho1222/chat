@@ -9,7 +9,7 @@ import vistaCliente.VentCliente;
 import vistaCliente.vistaIp;
 public class launcher {
 	 public static void main(String args[]) throws IOException {
-		new ControlPutas();
+		new controlRun();
        
          
  }
