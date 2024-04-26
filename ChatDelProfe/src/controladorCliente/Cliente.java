@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
+import modeloCliente.Conexion;
 import vistaCliente.VentCliente;
 import vistaCliente.VentPrivada;
 
@@ -42,11 +43,10 @@ public class Cliente
    public void conexion() throws IOException 
    {
       try {
-         comunication = new Socket(Cliente.IP_SERVER, 8081);
-         comunication2 = new Socket(Cliente.IP_SERVER, 8082);
-         entrada = new DataInputStream(comunication.getInputStream());
-         salida = new DataOutputStream(comunication.getOutputStream());
-         entrada2 = new DataInputStream(comunication2.getInputStream());
+         Conexion con= new Conexion(Cliente.IP_SERVER);
+         entrada = new DataInputStream(con.getComunication().getInputStream());
+         salida = new DataOutputStream(con.getComunication().getOutputStream());
+         entrada2 = new DataInputStream(con.getComunication2().getInputStream());
          nomCliente = vent.pedirNick();
         vent.setNombreUser(nomCliente);         
          salida.writeUTF(nomCliente);
