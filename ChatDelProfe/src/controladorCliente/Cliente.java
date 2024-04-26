@@ -32,7 +32,7 @@ public class Cliente
 	  VentPrivada priv=new VentPrivada(this);
 	 
        vent=new VentCliente(this,priv);
-      
+       conexion();
        vent.crear2();
       controlBotones controlBotones=new controlBotones(vent,priv,this);
       controladorPrivado contro =new controladorPrivado(priv, this);

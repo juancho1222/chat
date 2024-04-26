@@ -108,7 +108,7 @@ public class VentCliente extends JFrame  {
             
      }
       public void crear2() throws IOException {   
-    	  cliente.conexion();
+    	 
              nomUsers=new Vector();
 
              ponerActivos(cliente.pedirUsuarios());
