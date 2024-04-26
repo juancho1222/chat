@@ -14,7 +14,7 @@ import vistaCliente.VentPrivada;
 public class controlBotones implements ActionListener {
     VentCliente ventanaCliente;
     VentPrivada ventanaPrivada;
-    Cliente cliente;
+    Gestor cliente;
 
     /**
      * Constructor de la clase controlBotones.
@@ -22,7 +22,7 @@ public class controlBotones implements ActionListener {
      * @param ventPrivada Ventana de chat privado.
      * @param cliente Instancia del cliente.
      */
-    public controlBotones(VentCliente ventCliente, VentPrivada ventPrivada, Cliente cliente) {
+    public controlBotones(VentCliente ventCliente, VentPrivada ventPrivada, Gestor cliente) {
         this.ventanaCliente = ventCliente;
         this.cliente = cliente;
         this.ventanaPrivada = ventPrivada;

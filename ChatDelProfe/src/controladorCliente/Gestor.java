@@ -12,9 +12,9 @@ import vistaCliente.VentCliente;
 import vistaCliente.VentPrivada;
 
 /**
- * La clase Cliente representa al cliente que se conecta al servidor.
+ * La clase Gestor representa al cliente que se conecta al servidor.
  */
-public class Cliente {
+public class Gestor {
     public static String IP_SERVER;
     VentCliente vent;
     DataInputStream entrada = null;
@@ -29,7 +29,7 @@ public class Cliente {
      * Constructor de la clase Cliente.
      * @throws IOException Si ocurre un error de E/S.
      */
-    public Cliente() throws IOException {
+    public Gestor() throws IOException {
         VentPrivada priv = new VentPrivada(this);
         vent = new VentCliente(this, priv);
         conexion();
@@ -44,7 +44,7 @@ public class Cliente {
      */
     public void conexion() throws IOException {
         try {
-            Conexion con = new Conexion(Cliente.IP_SERVER);
+            Conexion con = new Conexion(Gestor.IP_SERVER);
             entrada = new DataInputStream(con.getComunication().getInputStream());
             salida = new DataOutputStream(con.getComunication().getOutputStream());
             entrada2 = new DataInputStream(con.getComunication2().getInputStream());
@@ -78,7 +78,7 @@ public class Cliente {
             for (int i = 0; i < numUsers; i++)
                 users.add(entrada.readUTF());
         } catch (IOException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Gestor.class.getName()).log(Level.SEVERE, null, ex);
         }
         return users;
     }

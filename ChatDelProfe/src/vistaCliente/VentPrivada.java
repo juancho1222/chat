@@ -6,7 +6,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.*;
 
-import controladorCliente.Cliente;
+import controladorCliente.Gestor;
 import controladorCliente.controladorPrivado;
 
 /**
@@ -20,14 +20,14 @@ public class VentPrivada extends JFrame {
    public JTextField txtMensage;
    public JButton butEnviar;
    
-   Cliente cliente;
+   Gestor cliente;
    public String amigo;
    
    /**
     * Crea una nueva ventana privada para chats individuales.
     * @param cliente Cliente asociado a la ventana.
     */
-   public VentPrivada(Cliente cliente)
+   public VentPrivada(Gestor cliente)
    {
        
       super("Amigo");

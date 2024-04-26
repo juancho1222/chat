@@ -11,7 +11,7 @@ import java.util.Vector;
 import javax.swing.*;
 import javax.swing.border.Border;
 
-import controladorCliente.Cliente;
+import controladorCliente.Gestor;
 import controladorCliente.controlBotones;
 
 import javax.swing.JOptionPane.*;
@@ -31,7 +31,7 @@ public class VentCliente extends JFrame  {
      JLabel lblNomUser;
      public JList lstActivos;
      public JButton butPrivado;
-     Cliente cliente;	
+     Gestor cliente;	
       
       JMenuBar barraMenu;
       JMenu JMAyuda;
@@ -51,7 +51,7 @@ public class VentCliente extends JFrame  {
       * @param ventPrivada Ventana privada para chats individuales.
       * @throws IOException Si hay un error de entrada/salida.
       */
-     public VentCliente(Cliente cliente, VentPrivada ventPrivada) throws IOException {
+     public VentCliente(Gestor cliente, VentPrivada ventPrivada) throws IOException {
              super("Cliente Chat");
              this.cliente=cliente;
              this.vp=ventPrivada;

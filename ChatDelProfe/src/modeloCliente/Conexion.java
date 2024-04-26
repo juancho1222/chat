@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import controladorCliente.Cliente;
+
 import modeloServidor.Propiedades;
 
 /**

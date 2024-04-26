@@ -9,14 +9,14 @@ import vistaCliente.VentPrivada;
  */
 public class controladorPrivado implements ActionListener {
     VentPrivada ventPriv;
-    Cliente cliente;
+    Gestor cliente;
 
     /**
      * Constructor de la clase controladorPrivado.
      * @param ventPriv Ventana de chat privado.
      * @param cliente Instancia del cliente.
      */
-    public controladorPrivado(VentPrivada ventPriv, Cliente cliente) {
+    public controladorPrivado(VentPrivada ventPriv, Gestor cliente) {
         this.ventPriv = ventPriv;
         this.cliente = cliente;
         this.ventPriv.txtMensage.addActionListener(this);
